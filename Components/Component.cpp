@@ -55,6 +55,9 @@ int Component::getCompCenterX(UI* pUI) {
 int Component::getCompCenterY(UI* pUI) {
 	return m_pGfxInfo->PointsList[0].y+pUI->getCompHeight()/2;
 }
+GraphicsInfo* Component::getGraphics() {
+	return m_pGfxInfo;
+}
 void Component::deletecon(Connection* pCon) {
 	for (int i = 0; i < term1_conn_count; i++) {
 		if (term1_conns[i] == pCon)

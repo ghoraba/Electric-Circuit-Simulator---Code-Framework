@@ -116,6 +116,7 @@ ActionType UI::GetUserAction()
 			case ITM_RES:	return ADD_RESISTOR;
 			case ITM_BULB:	return ADD_BULB;
 			case ITM_BUZZER:return ADD_BUZZER;
+			case ITM_LABEL: return ADD_Label;
 			case ITM_CONNECTION:return ADD_CONNECTION;
 			case ITM_EDIT:return EDIT;
 			case ITM_DELETE:return DEL;
@@ -183,7 +184,8 @@ void UI::PrintMsg(string msg) const
 }
 void UI::labelMsg(string msg,int x,int y)
 {
-		
+	ClearStatusBar();
+	
 	int MsgX = x;
 	int MsgY = y;
 
@@ -228,6 +230,7 @@ void UI::CreateDesignToolBar()
 	MenuItemImages[ITM_BUZZER] = "images\\Menu\\Menu_Buzzer.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\Menu\\Menu_Exit.jpg";
 	MenuItemImages[ITM_CONNECTION] = "images\\Menu\\Menu_Wire.jpg";
+	MenuItemImages[ITM_LABEL] = "images\\Menu\\Menu_Label.jpg";
 	MenuItemImages[ITM_EDIT] = "images\\Menu\\Menu_Edit.jpg";
 	MenuItemImages[ITM_DELETE] = "images\\Menu\\Menu_Delete.jpg";
 	

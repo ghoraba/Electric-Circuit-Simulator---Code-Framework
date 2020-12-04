@@ -6,6 +6,7 @@
 #include"Actions/ActionDelete.h"
 #include"Actions/ActionSelect.h"
 #include"Actions/ActionEdit.h"
+#include"Actions/ActionAddLabel.h"
 #include <iostream>
 #include<cmath>
 
@@ -194,6 +195,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 	case ADD_CONNECTION:
 		pAct = new ActionAddConnection(this);
+		break;
+	case ADD_Label:
+		pAct = new ActionAddLabel(this);
 		break;
 	case SELECT:
 		pAct = new ActionSelect(this);

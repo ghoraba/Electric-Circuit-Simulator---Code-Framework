@@ -41,6 +41,7 @@ class UI
 		ITM_BUZZER,
 		ITM_CONNECTION,
 		ITM_EDIT,
+		ITM_LABEL,
 		ITM_DELETE,
 					//TODO: Add more items names here
 		ITM_EXIT,		//Exit item
@@ -125,7 +126,7 @@ public:
 	void DrawConnection(const GraphicsInfo &r_GfxInfo, bool selected = false) const;
 	
 	void PrintMsg(string msg) const;	//Print a message on Status bar
-	void labelMsg(string msg,int x,int y);
+	void labelMsg(string msg,int x=25,int y= height-StatusBarHeight + 10);
 	~UI();
 };
 

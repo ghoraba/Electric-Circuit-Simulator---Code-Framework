@@ -44,6 +44,7 @@ public:
 	int getTermcount(TerminalNum Term);
 	Connection** getTermConnections(TerminalNum Term);
 	string getLabel();
+	GraphicsInfo* getGraphics();
 	int getResistance();
 	//void setTerm1Volt(double v);		//sets the voltage at terminal1
 	//void setTerm2Volt(double v);		//sets the voltage at terminal2

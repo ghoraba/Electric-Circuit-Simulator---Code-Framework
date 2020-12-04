@@ -113,6 +113,7 @@
     <ClCompile Include="Actions\ActionAddBulb.cpp" />
     <ClCompile Include="Actions\ActionAddBuzzer.cpp" />
     <ClCompile Include="Actions\ActionAddConnection.cpp" />
+    <ClCompile Include="Actions\ActionAddLabel.cpp" />
     <ClCompile Include="Actions\ActionAddRes.cpp" />
     <ClCompile Include="Actions\ActionDelete.cpp" />
     <ClCompile Include="Actions\ActionEdit.cpp" />
@@ -167,6 +168,7 @@
     <ClInclude Include="Actions\ActionAddBulb.h" />
     <ClInclude Include="Actions\ActionAddBuzzer.h" />
     <ClInclude Include="Actions\ActionAddConnection.h" />
+    <ClInclude Include="Actions\ActionAddLabel.h" />
     <ClInclude Include="Actions\ActionAddRes.h" />
     <ClInclude Include="Actions\ActionDelete.h" />
     <ClInclude Include="Actions\ActionEdit.h" />

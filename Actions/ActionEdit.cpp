@@ -44,9 +44,11 @@ void ActionEdit::Execute()
 					intValue = stod(value);
 					switch (intValue) {
 					case 1:
-					{value = pUI->GetSrting(comp1->getLabel(), comp1->getLabel());
-					comp1->setlabel(value);
-					break;
+					{
+						
+						value = pUI->GetSrting(comp1->getLabel(), comp1->getLabel());
+						comp1->setlabel(value);
+						break;
 					}
 					case 2:
 					{
@@ -63,7 +65,9 @@ void ActionEdit::Execute()
 
 			}
 		}
-	
+		else if (conn1 != nullptr) {
+
+		}
 	pUI->ClearStatusBar();
 }
 void ActionEdit::Undo()
