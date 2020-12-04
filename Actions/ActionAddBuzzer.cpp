@@ -43,7 +43,7 @@ void ActionAddBuzzer::Execute()
 	pGInfo->PointsList[1].y = Cy + compHeight / 2;
 
 	Buzzer* pB = new Buzzer(pGInfo);
-	string value = pUI->GetSrting();
+	string value = pUI->GetSrting("Enter Buzzer resistance value: (default value is 1) ");
 	while (value == "")
 		value = pUI->GetSrting();
 	pB->setresistance(stod(value));

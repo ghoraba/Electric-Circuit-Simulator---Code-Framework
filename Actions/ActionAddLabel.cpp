@@ -12,14 +12,13 @@ ActionAddLabel::ActionAddLabel(ApplicationManager* pApp) :Action(pApp)
 	Connection* conn1 = pManager->GetConnByCordinates(x, y);
 	pUI->ClearStatusBar();
 	if (comp1 != nullptr) {
-		pUI->PrintMsg("Enter label for the selected component");
-		string value = pUI->GetSrting();
+		
+		string value = pUI->GetSrting("Enter label for the selected component","");
 		comp1->setlabel(value);
 	}
 	else if (conn1 != nullptr) {
-
-		pUI->PrintMsg("Enter label for the selected connection");
-		string value = pUI->GetSrting();
+		
+		string value = pUI->GetSrting("Enter label for the selected connection","");
 		conn1->setLabel(value);
 	}
 }
