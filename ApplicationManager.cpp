@@ -6,7 +6,9 @@
 #include"Actions/ActionDelete.h"
 #include"Actions/ActionSelect.h"
 #include"Actions/ActionEdit.h"
+#include"Actions/ExitAction.h"
 #include"Actions/ActionAddLabel.h"
+
 #include <iostream>
 #include<cmath>
 
@@ -88,9 +90,11 @@ void ApplicationManager::DelConn(Connection* pConn)
 }
 void ApplicationManager::DelAll() {
 	for (int i = 0; i < CompCount; i++) {
-		delete CompList[i];}
+		DelComponent(CompList[i]);
+	}
+
 	for (int i = 0; i < ConnCount; i++) {
-		delete ConnList[i];
+		DelConn(ConnList[i]);
 	}
 }
 void ApplicationManager::AddConnection(Connection* pConn) {

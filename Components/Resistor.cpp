@@ -5,9 +5,7 @@
 #include "..\UI\UI.h"
 Resistor::Resistor(GraphicsInfo *r_GfxInfo):Component(r_GfxInfo)
 {
-	
-	
-	resistance = 2; // TODO: Take resistance from user
+	resistance = 2;
 	sourceVoltage = 0;
 }
 
