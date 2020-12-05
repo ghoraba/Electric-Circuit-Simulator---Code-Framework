@@ -8,9 +8,9 @@ Bulb::Bulb(GraphicsInfo* r_GfxInfo) :Component(r_GfxInfo)
 void Bulb::Draw(UI* pUI)
 {
 	//Call output class and pass resistor drawing info to it.
-	//int xlabel = m_pGfxInfo->PointsList[0].x;
-	//int ylabel = m_pGfxInfo->PointsList[0].y + 50;
-	//pUI->labelMsg("Bulb", xlabel, ylabel);
+	int xlabel = m_pGfxInfo->PointsList[0].x;
+	int ylabel = m_pGfxInfo->PointsList[0].y + 50;
+	pUI->labelMsg(getLabel(), xlabel, ylabel);
 	pUI->DrawBulb(*m_pGfxInfo,selected); //update to draw Bulb
 
 }

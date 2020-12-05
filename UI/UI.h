@@ -39,10 +39,15 @@ class UI
 		ITM_RES,		//Resistor item in menu
 		ITM_BULB,
 		ITM_BUZZER,
+		ITM_FUZE,
+		ITM_SWITCH,
+		ITM_BATTERY,
+		ITM_GROUND,
 		ITM_CONNECTION,
 		ITM_EDIT,
 		ITM_LABEL,
 		ITM_DELETE,
+		ITM_SAVE,
 					//TODO: Add more items names here
 		ITM_EXIT,		//Exit item
 		
@@ -117,6 +122,11 @@ public:
 		
 	// Draws a resistor
 	void DrawResistor(const GraphicsInfo &r_GfxInfo, bool selected = false) const;
+	void DrawBattery(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
+	void DrawGround(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
+	void DrawOpenSwitch(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
+	void DrawClosedSwitch(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
+	void DrawFuze(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
 	void DrawBulb(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
 	void DrawBuzzer(const GraphicsInfo& r_GfxInfo, bool selected = false) const;
 

@@ -12,7 +12,8 @@ private:
 	string m_Label;
 	
 protected:
-	
+	int MaxFuzeCurrent = 0;
+	Status SwitchStatus;
 	//Each component has two ending terminals (term1, term2)
 	double term1_volt, term2_volt;	//voltage at terminals 1&2
 	double resistance, sourceVoltage; // internal resistance and voltage jump introduced by source
@@ -24,7 +25,6 @@ protected:
 	int term2_conn_count;
 	bool selected;
 	GraphicsInfo *m_pGfxInfo;	//The parameters required to draw a component
-
 public:
 	
 	void addTerm1Conn(Connection*);
@@ -41,11 +41,21 @@ public:
 	bool isSelected();
 	void Selection();
 	void unSelect();
-	int getTermcount(TerminalNum Term);
+	void setMaxFuze(int max) {
+		MaxFuzeCurrent = max;
+	}
+	int getMaxFuze() {
+		return MaxFuzeCurrent;
+	}
+	// getTermcount(TerminalNum Term);
 	Connection** getTermConnections(TerminalNum Term);
 	string getLabel();
 	GraphicsInfo* getGraphics();
 	int getResistance();
+	void setSourceVoltage(int V);
+	int getBatteryVoltage();
+	void setSwitchState(int S);
+	int getSwitchState();
 	//void setTerm1Volt(double v);		//sets the voltage at terminal1
 	//void setTerm2Volt(double v);		//sets the voltage at terminal2
 	//double getTerm1Volt();				//returns the voltage at terminal1
@@ -61,11 +71,12 @@ public:
 
 	int getCompCenterX(UI*); // get horizontal/vertical centers of the component
 	int getCompCenterY(UI*);
-	
+	int getGraphicsInfoY();
+	int getGraphicsInfoX();
 	//virtual int GetOutStatus()=0;	//returns status of output if BULB/BUZZER, return -1
 	//virtual int GetInputStatus()=0;	//returns status of SWITCH, return -1
-
-	//virtual void setInputStatus(STATUS s)=0;	//set status of SWITCH
+	
+//virtual void setInputStatus(STATUS s)=0;	//set status of SWITCH
 
 	//bool isInRegion(int x, int y, UI* pUI); // whether this point lies inside the component
 	//TerminalNum whichTerminal(Connection* Conn); // returns the terminal to which a connection is connected

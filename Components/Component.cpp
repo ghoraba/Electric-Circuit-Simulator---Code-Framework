@@ -49,6 +49,13 @@ string Component::getlabel()const {
 void Component::setresistance(double R) {
 	resistance = R;
 }
+void Component::setSourceVoltage(int V) {
+	sourceVoltage = V;
+}
+int Component::getBatteryVoltage() {
+	return sourceVoltage;
+}
+
 int Component::getCompCenterX(UI* pUI) {
 	return m_pGfxInfo->PointsList[0].x+pUI->getCompWidth()/2;
 }
@@ -57,6 +64,12 @@ int Component::getCompCenterY(UI* pUI) {
 }
 GraphicsInfo* Component::getGraphics() {
 	return m_pGfxInfo;
+}
+int Component::getGraphicsInfoY() {
+	return m_pGfxInfo->PointsList[0].x;
+}
+int Component::getGraphicsInfoX() {
+	return m_pGfxInfo->PointsList[0].y;
 }
 void Component::deletecon(Connection* pCon) {
 	for (int i = 0; i < term1_conn_count; i++) {
@@ -86,6 +99,21 @@ string Component::getLabel() {
 }
 int Component::getResistance() {
 	return resistance;
+}
+void Component::setSwitchState(int S) {
+	switch (S) {
+	case 1:
+		SwitchStatus = CLOSED;
+		break;
+	case 0:
+		SwitchStatus = OPEN;
+		break;
+	default:
+		SwitchStatus = CLOSED;
+	}
+}
+int Component::getSwitchState() {
+	return SwitchStatus;
 }
 Component::~Component()
 {

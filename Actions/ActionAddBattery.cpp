@@ -1,30 +1,32 @@
-#include "ActionAddBulb.h"
+#include "ActionAddBattery.h"
 #include "..\ApplicationManager.h"
 #include "..\UI\UI.h"
-ActionAddBulb::ActionAddBulb(ApplicationManager* pApp) :Action(pApp)
+ActionAddBattery::ActionAddBattery(ApplicationManager* pApp) :Action(pApp)
 {
 }
 
-ActionAddBulb::~ActionAddBulb(void)
+ActionAddBattery::~ActionAddBattery(void)
 {
 }
 
-void ActionAddBulb::Execute()
+void ActionAddBattery::Execute()
 {
 
 	//Get a Pointer to the user Interfaces
 	UI* pUI = pManager->GetUI();
 
 	//Print Action Message
-	pUI->PrintMsg("Adding a new Bulb: Click anywhere to add");
+	pUI->PrintMsg("Adding a new Battery: Click anywhere to add");
 
 	//Get Center point of the area where the Comp should be drawn
+
 	pUI->GetPointClicked(Cx, Cy);
 	while (!(Cy > UI::getToolBarHeight() + UI::getCompHeight() / 2
-			&& Cy < UI::Height() - UI::getStatusBarHeight() - UI::getCompHeight() / 2
-			&& Cx > UI::getCompWidth() / 2
-			&& Cx < UI::getWidth() - UI::getCompWidth() / 2)) {
+		&& Cy < UI::Height() - UI::getStatusBarHeight() - UI::getCompHeight() / 2
+		&& Cx > UI::getCompWidth() / 2
+		&& Cx < UI::getWidth() - UI::getCompWidth() / 2)) {
 		pUI->GetPointClicked(Cx, Cy);
+
 	}
 
 	//Clear Status Bar
@@ -36,24 +38,34 @@ void ActionAddBulb::Execute()
 	//Calculate the rectangle Corners
 	int compWidth = pUI->getCompWidth();
 	int compHeight = pUI->getCompHeight();
-	
+
 	pGInfo->PointsList[0].x = Cx - compWidth / 2;
 	pGInfo->PointsList[0].y = Cy - compHeight / 2;
 	pGInfo->PointsList[1].x = Cx + compWidth / 2;
 	pGInfo->PointsList[1].y = Cy + compHeight / 2;
 
-	Bulb* pB = new Bulb(pGInfo);
-	string value = pUI->GetSrting("Enter value Bulb Resistance Value, Default value is 2","2");
+	Battery* pB = new Battery(pGInfo);
+	string value = pUI->GetSrting("Enter Voltage Value: default value is 20","20");
 	while (value == "")
-		value = pUI->GetSrting();
-	pB->setresistance(stod(value));
+		value = pUI->GetSrting("Enter Voltage Value: default value is 20","20");
+	pB->setSourceVoltage(stod(value));
+
+	//string s;
+	//s = pUI->GetSrting("Enter Label: Resistor","Resistor");
+	//pR->setlabel(s);
+
 	pUI->ClearStatusBar();
-	/*pUI->labelMsg("resistor", pR->getCompCenterX(pUI) - 25, pR->getCompCenterY(pUI) + 30);*/
+
+	/*pR->getCompCenterX(pUI) - 50;
+	pR->getCompCenterY(pUI) + 60;*/
+
 	pManager->AddComponent(pB);
+
+
 }
 
-void ActionAddBulb::Undo()
+void ActionAddBattery::Undo()
 {}
 
-void ActionAddBulb::Redo()
+void ActionAddBattery::Redo()
 {}

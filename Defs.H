@@ -4,14 +4,18 @@
 
 //Terminals
 enum TerminalNum { TERM1, TERM2 };
-
+enum Status{OPEN,CLOSED};
 //All possible actions
 enum ActionType 
 {
 	ADD_RESISTOR,		//Add Resistor
 	ADD_BULB,			//Add Bulb
 	ADD_BUZZER,
+	ADD_FUZE,
 	ADD_SWITCH,				//Add Switch
+	ADD_BATTERY,
+	ADD_GROUND,
+	
 	ADD_CONNECTION,		//Add Wire Connection
 
 	ADD_Label,			//Add Label to a Component, a Connection
@@ -48,8 +52,12 @@ enum  MODE	//Modes of operation
 enum ALLCOMPS
 {
 	RESISTOR,
-	BUZZER,
 	BULB,
+	BUZZER,
+	FUZE,
+	SWITCH,				
+	BATTERY,
+	GROUND,
 };
 
 //Maximum number of connections that can be connected to any output components

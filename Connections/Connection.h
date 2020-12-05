@@ -12,6 +12,7 @@ class Connection
 	bool selected;
 public:
 	void setLabel(string s);
+	string getLabel();
 	double lineslope();
 	GraphicsInfo* getgraphics() const;
 	Connection(GraphicsInfo* r_GfxInfo, Component* cmp1 = nullptr, Component* cmp2 = nullptr);

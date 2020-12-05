@@ -10,7 +10,7 @@ Connection::Connection(GraphicsInfo* r_GfxInfo, Component* cmp1, Component* cmp2
 void Connection::Draw(UI* pUI)
 {
 	int xlabel = (pGfxInfo->PointsList[0].x + pGfxInfo->PointsList[1].x) / 2;
-	int ylabel = ((pGfxInfo->PointsList[0].y + pGfxInfo->PointsList[1].y) / 2) + 25;
+	int ylabel = ((pGfxInfo->PointsList[0].y + pGfxInfo->PointsList[1].y) / 2) + 10;
 	pUI->labelMsg(c_label, xlabel, ylabel);
 	
 	pUI->DrawConnection(*pGfxInfo,selected);
@@ -18,6 +18,9 @@ void Connection::Draw(UI* pUI)
 void Connection::setLabel(string s) {
 	c_label = s;
 }
+string Connection::getLabel() {
+	return c_label;
+	}
 double Connection::lineslope() {
 	double x1 = pGfxInfo->PointsList[0].x;
 	double x2 = pGfxInfo->PointsList[1].x;

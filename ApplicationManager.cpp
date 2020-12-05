@@ -2,11 +2,16 @@
 #include "Actions\ActionAddRes.h"
 #include "Actions\ActionAddBulb.h"
 #include "Actions\ActionAddBuzzer.h"
+#include"Actions/ActionAddFuze.h"
+#include"Actions/ActionAddBattery.h"
+#include"Actions/ActionAddSwitch.h"
+#include"Actions/ActionAddGround.h"
 #include"Actions/ActionAddConnection.h"
 #include"Actions/ActionDelete.h"
 #include"Actions/ActionSelect.h"
 #include"Actions/ActionEdit.h"
 #include"Actions/ExitAction.h"
+#include"Actions/ActionSave.h"
 #include"Actions/ActionAddLabel.h"
 
 #include <iostream>
@@ -197,6 +202,18 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case ADD_BUZZER:
 		pAct = new ActionAddBuzzer(this);
 		break;
+	case ADD_FUZE:
+		pAct = new ActionAddFuze(this);
+		break;
+	case ADD_BATTERY:
+		pAct = new ActionAddBattery(this);
+		break;
+	case ADD_SWITCH:
+		pAct = new ActionAddSwitch(this);
+		break;
+	case ADD_GROUND:
+		pAct = new ActionAddGround(this);
+		break;
 	case ADD_CONNECTION:
 		pAct = new ActionAddConnection(this);
 		break;
@@ -208,6 +225,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 	case EDIT:
 		pAct = new ActionEdit(this);
+		break;
+	case SAVE:
+		pAct = new ActionSave(this);
 		break;
 	case DEL:
 		pAct = new ActionDelete(this);
@@ -386,6 +406,54 @@ double ApplicationManager::CalculateCurrent() {
 // Calculates voltage at each component terminal
 void ApplicationManager::CalculateVoltages(double current) {
 	// TODO
+}
+void ApplicationManager::Save(fstream& file, string name)
+{
+	file.open(name, ios::out);
+	file << CompCount << endl;
+	for (int i = 0; i < CompCount; i++)
+	{
+		if (CompList[i]->whichComponent() == RESISTOR)
+			file << "RES" << "\t" << i + 1 <<"\t"<< CompList[i]->getLabel() <<"\t"<<CompList[i]->getResistance()<<"\t"<<CompList[i]->getGraphicsInfoX() << "\t" << CompList[i]->getGraphicsInfoY()
+			<< endl;
+		if (CompList[i]->whichComponent() == GROUND)
+			file << "GND" << "\t" << i + 1 << "\t" << CompList[i]->getLabel() << "\t" << -1 << "\t" << CompList[i]->getGraphicsInfoX() << "\t" << CompList[i]->getGraphicsInfoY()
+			<< endl;
+		if (CompList[i]->whichComponent() == BATTERY)
+			file << "BAT" << "\t" << i + 1 << "\t" << CompList[i]->getLabel() << "\t" << CompList[i]->getBatteryVoltage() << "\t" << CompList[i]->getGraphicsInfoX() << "\t" << CompList[i]->getGraphicsInfoY()
+			<< endl;
+		if (CompList[i]->whichComponent() == FUZE)
+			file << "BAT" << "\t" << i + 1 << "\t" << CompList[i]->getLabel() << "\t" << CompList[i]->getMaxFuze() << "\t" << CompList[i]->getGraphicsInfoX() << "\t" << CompList[i]->getGraphicsInfoY()
+			<< endl;
+		if (CompList[i]->whichComponent() == SWITCH)
+			file << "BAT" << "\t" << i + 1 << "\t" << CompList[i]->getLabel() << "\t" << CompList[i]->getSwitchState() << "\t" << CompList[i]->getGraphicsInfoX() << "\t" << CompList[i]->getGraphicsInfoY()
+			<< endl;
+		if (CompList[i]->whichComponent() == BUZZER)
+			file << "BAT" << "\t" << i + 1 << "\t" << CompList[i]->getLabel() << "\t" << CompList[i]->getResistance() << "\t" << CompList[i]->getGraphicsInfoX() << "\t" << CompList[i]->getGraphicsInfoY()
+			<< endl;
+		if (CompList[i]->whichComponent() == BULB)
+			file << "BAT" << "\t" << i + 1 << "\t" << CompList[i]->getLabel() << "\t" << CompList[i]->getResistance() << "\t" << CompList[i]->getGraphicsInfoX() << "\t" << CompList[i]->getGraphicsInfoY()
+			<< endl;	
+	}
+	file << "Connection \n" << CompCount << endl;;
+
+	for (int i = 0; i < ConnCount; i++) {
+		int comp1 = getCompOrder(ConnList[i]->getComp(1))+1;
+		int comp2 = getCompOrder(ConnList[i]->getComp(2))+1;
+		GraphicsInfo* G = ConnList[i]->getgraphics();
+		int x1 = G->PointsList[0].x;
+		int x2 = G->PointsList[1].x;
+		int y1 = G->PointsList[0].y;
+		int y2 = G->PointsList[1].y;
+		file << comp1 << "\t" << comp2 << "\t" << x1 << "\t" << y1 << "\t" << x2 << "\t" << y2 << endl;
+	}
+	file.close();
+}
+int ApplicationManager::getCompOrder(Component* comp) {
+	for (int i = 0; i < CompCount; i++) {
+		if (comp == CompList[i])
+			return i;
+	}
 }
 
 ////////////////////////////////////////////////////////////////////

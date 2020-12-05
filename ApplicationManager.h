@@ -1,6 +1,6 @@
 #ifndef APPLICATION_MANAGER_H
 #define APPLICATION_MANAGER_H
-
+#include<fstream>
 #include "Defs.h"
 #include "UI\UI.h"
 #include "Actions\Action.h"
@@ -57,7 +57,8 @@ public:
 	void ToSimulation(); // Switches to simulation mode
 	double CalculateCurrent();
 	void CalculateVoltages(double current);
-
+	void Save(fstream& file, string name);
+	int ApplicationManager::getCompOrder(Component* comp);
 	//destructor
 	~ApplicationManager();
 };
