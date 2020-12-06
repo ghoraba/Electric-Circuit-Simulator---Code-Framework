@@ -59,6 +59,25 @@ Component* Connection::getComp(int n) {
 	}
 	
 }
+void Connection::setNewComp(int n, Component* comp) {
+	switch (n) {
+	case 1:
+		Comp1 = comp;
+		break;
+	case 2:
+		Comp2 = comp;
+		break;
+	}
+}
+int Connection::WhichComp(Component* comp) {
+	if (Comp1 == comp)
+		return 1;
+	else if (Comp2 == comp)
+		return 2;
+	else
+		return 0;
+}
+
 bool Connection::isSelected() {
 
 	return selected;

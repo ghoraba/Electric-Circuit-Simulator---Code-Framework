@@ -20,84 +20,62 @@ void ActionAddConnection::Execute()
 
 	pUI->GetPointClicked(Cx1, Cy1);
 	Component* comp1 = pManager->GetComponentByCordinates(Cx1, Cy1);
-	while (comp1 == nullptr) {
-		pUI->GetPointClicked(Cx1, Cy1);
-		comp1 = pManager->GetComponentByCordinates(Cx1, Cy1);
-	}
 	
 	pUI->ClearStatusBar();
 
 	pUI->PrintMsg("Adding a new connection: select the second component");
 	pUI->GetPointClicked(Cx2, Cy2);
 	Component* comp2 = pManager->GetComponentByCordinates(Cx2, Cy2);
-	while (comp2 == nullptr) {
-		pUI->GetPointClicked(Cx2, Cy2);
-		comp2 = pManager->GetComponentByCordinates(Cx2, Cy2);
-	}
+	
 	pUI->ClearStatusBar();
+	if (!(comp1 == nullptr || comp2 == nullptr)) {
+		GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the Comp
 
-	GraphicsInfo* pGInfo = new GraphicsInfo(2); //Gfx info to be used to construct the Comp
+		//Calculate the rectangle Corners
+		int compWidth = pUI->getCompWidth();
+		int compHeight = pUI->getCompHeight();
+		x1 = comp1->getCompCenterX(pUI);
+		x2 = comp2->getCompCenterX(pUI);
+		y1 = comp1->getCompCenterY(pUI);
+		y2 = comp2->getCompCenterY(pUI);
 
-	//Calculate the rectangle Corners
-	int compWidth = pUI->getCompWidth();
-	int compHeight = pUI->getCompHeight();
-	x1 = comp1->getCompCenterX(pUI);
-	x2=  comp2->getCompCenterX(pUI);
-	y1 = comp1->getCompCenterY(pUI);
-	y2 = comp2->getCompCenterY(pUI);
-	//bool onefirst;
-	if (Cx1 > x1) {
-		pGInfo->PointsList[1].x = x1 + (compWidth / 2);
-		pGInfo->PointsList[1].y = y1;
+		if (Cx1 > x1) {
+			pGInfo->PointsList[0].x = x1 + (compWidth / 2);
+			pGInfo->PointsList[0].y = y1;
+		}
+		else {
+			pGInfo->PointsList[0].x = x1 - (compWidth / 2);
+			pGInfo->PointsList[0].y = y1;
+
+		}
+		if (Cx2 > x2) {
+			pGInfo->PointsList[1].x = x2 + (compWidth / 2);
+			pGInfo->PointsList[1].y = y2;
+		}
+		else {
+			pGInfo->PointsList[1].x = x2 - (compWidth / 2);
+			pGInfo->PointsList[1].y = y2;
+
+		}
+
+
+
+
+
+		Connection* pC = new Connection(pGInfo, comp1, comp2);
+		if (Cx1 > x1)
+			comp1->addTerm2Conn(pC);
+		else
+			comp1->addTerm1Conn(pC);
+
+		if (Cx2 > x2)
+			comp2->addTerm2Conn(pC);
+		else
+			comp2->addTerm1Conn(pC);
+
+
+		pManager->AddConnection(pC);
 	}
-	else {
-		pGInfo->PointsList[1].x = x1 - (compWidth / 2);
-		pGInfo->PointsList[1].y = y1;
-		
-	}
-	if (Cx2> x2) {
-		pGInfo->PointsList[0].x = x2 + (compWidth / 2);
-		pGInfo->PointsList[0].y = y2;
-	}
-	else {
-		pGInfo->PointsList[0].x = x2 - (compWidth / 2);
-		pGInfo->PointsList[0].y = y2;
-	
-	}
-
-
-	/*if (x1 > x2) {
-		
-			pGInfo->PointsList[1].x = x1 - (compWidth / 2);
-			pGInfo->PointsList[1].y = y1;
-		
-		pGInfo->PointsList[0].x = x2 + (compWidth / 2);
-		pGInfo->PointsList[0].y = y2;
-		
-		onefirst = true;
-	}
-	else if(x2 > x1) {
-		pGInfo->PointsList[0].x = x1 + compWidth / 2;
-		pGInfo->PointsList[0].y = y1;
-		pGInfo->PointsList[1].x = x2 - compWidth / 2;
-		pGInfo->PointsList[1].y = y2;
-		onefirst = false;
-	}*/
-
-	
-	Connection* pC = new Connection(pGInfo,comp1,comp2);
-	if (Cx1>x1) 
-		comp1->addTerm2Conn(pC);
-	else 
-		comp1->addTerm1Conn(pC);
-	
-	if (Cx2 > x2)
-		comp2->addTerm2Conn(pC);
-	else
-		comp2->addTerm1Conn(pC);
-
-
-	pManager->AddConnection(pC);
 }
 
  void ActionAddConnection::Undo()

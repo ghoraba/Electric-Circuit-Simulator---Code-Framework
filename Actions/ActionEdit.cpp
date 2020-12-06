@@ -171,8 +171,8 @@ void ActionEdit::Execute()
 		string value;
 		int intValue;
 		do {
-			value = pUI->GetSrting("enter 1 to edit the label or 2 to cancel ", "");
-		} while (value != "1" && value != "2");
+			value = pUI->GetSrting("enter 1 to edit the label,2 to change terminals or 3 to cancel ", "");
+		} while (value != "1" && value != "2" && value != "3");
 		intValue = stod(value);
 		switch (intValue) {
 		case 1:
@@ -182,8 +182,42 @@ void ActionEdit::Execute()
 			conn1->setLabel(value);
 			break;
 		}
+		case 2: {
+			int x, y;
+			GraphicsInfo* G = new GraphicsInfo(2);
+			G = conn1->getgraphics();
+			pUI->PrintMsg("Select the Terminal which you want to change");
+			pUI->GetPointClicked(x, y);
+			pUI->ClearStatusBar();
+			Component* tempComp1 = pManager->GetComponentByCordinates(x, y);
+			Component* tempComp2;
+			if (tempComp1 != nullptr) {
+				int compnum = conn1->WhichComp(tempComp1);
+				if (compnum != 0) {
+					pUI->PrintMsg("Select the new Component you want to connect to: ");
+					pUI->GetPointClicked(x, y);
+					pUI->ClearStatusBar();
+					tempComp2 = pManager->GetComponentByCordinates(x, y);
+					if (tempComp2 != nullptr) {
+						tempComp1->deletecon(conn1);
+						if (x > tempComp2->getCompCenterX(pUI)) {
+							tempComp2->addTerm2Conn(conn1);
+							G->PointsList[compnum - 1].x = tempComp2->getCompCenterX(pUI) + (pUI->getCompWidth() / 2);
+							G->PointsList[compnum - 1].y = tempComp2->getCompCenterY(pUI);
+						}
+						else {
+							tempComp2->addTerm1Conn(conn1);
+							G->PointsList[compnum - 1].x = tempComp2->getCompCenterX(pUI) - (pUI->getCompWidth() / 2);
+							G->PointsList[compnum - 1].y = tempComp2->getCompCenterY(pUI);
 
-		case 2:
+						}
+						conn1->setNewComp(compnum, tempComp2);
+					}
+				}
+			}
+			break;
+		}
+		case 3:
 			break;
 		}
 		}

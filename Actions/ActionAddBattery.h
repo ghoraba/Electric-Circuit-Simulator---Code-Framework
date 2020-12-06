@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef ActionAddBattery_H
+#define ActionAddBattery_H
 #include "Action.h"
 #include "..\Components\Battery.h"
 
@@ -22,3 +22,4 @@ public:
 
 	virtual void ActionAddBattery::Redo();
 };
+#endif

@@ -50,14 +50,12 @@ void ActionAddFuze::Execute()
 		value = pUI->GetSrting("Enter Maximum Fuze Current value Value: default value is 10","10");
 	pR->setresistance(stod(value));
 
-	//string s;
-	//s = pUI->GetSrting("Enter Label: Resistor","Resistor");
-	//pR->setlabel(s);
+("Enter Label: Resistor","Resistor");
+
 
 	pUI->ClearStatusBar();
 
-	/*pR->getCompCenterX(pUI) - 50;
-	pR->getCompCenterY(pUI) + 60;*/
+	
 
 	pManager->AddComponent(pR);
 

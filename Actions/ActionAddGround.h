@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef ActionAddGround_H
+#define ActionAddGround_H
 #include "Action.h"
 #include "..\Components\Ground.h"
 
@@ -21,3 +21,4 @@ public:
 
 	virtual void ActionAddGround::Redo();
 };
+#endif

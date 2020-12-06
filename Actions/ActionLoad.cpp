@@ -15,7 +15,7 @@ void ActionLoad::Execute()
 
 	UI* pUI = pManager->GetUI();
 
-	pManager->Load(file, pUI->GetSrting("Write the name of the file: ",""));
+	pManager->Load(file, pUI->GetSrting("Write the name of the file: (Ex: test) ","") + ".txt");
 
 }
 

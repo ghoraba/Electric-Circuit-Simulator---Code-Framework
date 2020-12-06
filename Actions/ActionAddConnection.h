@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef ActionAddConnection_H
+#define ActionAddConnection_H
 #include "Action.h"
 #include"..\Connections\Connection.h"
 //Class responsible for adding a new resistor action
@@ -19,3 +19,4 @@ public:
 	virtual void Undo();
 	virtual void Redo();
 };
+#endif

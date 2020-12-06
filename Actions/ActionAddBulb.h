@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef ActionAddBulb_H
+#define ActionAddBulb_H
 #include "Action.h"
 #include "..\Components\Bulb.h"
 
@@ -20,3 +20,4 @@ public:
 	virtual void Undo();
 	virtual void Redo();
 };
+#endif

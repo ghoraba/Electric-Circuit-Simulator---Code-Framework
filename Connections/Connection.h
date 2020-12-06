@@ -20,6 +20,8 @@ public:
 	GraphicsInfo* getgraphics() const;
 	virtual void Draw(UI*);	//for connection to Draw itself
 	Component* getComp(int n);
+	void setNewComp(int n, Component*);
+	int WhichComp(Component*);
 	bool isSelected();
 	void Selection();
 	void unSelect();

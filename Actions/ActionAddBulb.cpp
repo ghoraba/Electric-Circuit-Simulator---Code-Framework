@@ -48,7 +48,7 @@ void ActionAddBulb::Execute()
 		value = pUI->GetSrting();
 	pB->setresistance(stod(value));
 	pUI->ClearStatusBar();
-	/*pUI->labelMsg("resistor", pR->getCompCenterX(pUI) - 25, pR->getCompCenterY(pUI) + 30);*/
+
 	pManager->AddComponent(pB);
 }
 

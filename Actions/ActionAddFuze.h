@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef ActionAddFuze_H
+#define ActionAddFuze_H
 #include "Action.h"
 #include "..\Components\Fuze.h"
 
@@ -21,4 +21,4 @@ public:
 
 	virtual void ActionAddFuze::Redo();
 };
-
+#endif

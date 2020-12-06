@@ -16,12 +16,12 @@ void ActionSelect::Execute() {
 	Connection* conn1 = pManager->GetConnByCordinates(x, y);
 	if (comp1 != nullptr){
 		
-		//pManager->UnselectAll(comp1);
+		//pManager->UnselectAll(comp1); //this line was used to make no more than thing to be selected
 		comp1->Selection();
 	}
 	else if (conn1 != nullptr) {
 		
-		//pManager->UnselectAll(conn1);
+		//pManager->UnselectAll(conn1); 
 		conn1->Selection();
 	}
 

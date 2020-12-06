@@ -50,14 +50,11 @@ void ActionAddBattery::Execute()
 		value = pUI->GetSrting("Enter Voltage Value: default value is 20","20");
 	pB->setSourceVoltage(stod(value));
 
-	//string s;
-	//s = pUI->GetSrting("Enter Label: Resistor","Resistor");
-	//pR->setlabel(s);
+
 
 	pUI->ClearStatusBar();
 
-	/*pR->getCompCenterX(pUI) - 50;
-	pR->getCompCenterY(pUI) + 60;*/
+
 
 	pManager->AddComponent(pB);
 

@@ -50,14 +50,9 @@ void ActionAddRes::Execute()
 				value = pUI->GetSrting("Enter Resistance Value: default value is 1");
 			pR->setresistance(stod(value));
 
-			//string s;
-			//s = pUI->GetSrting("Enter Label: Resistor","Resistor");
-			//pR->setlabel(s);
 
 			pUI->ClearStatusBar();
 
-			/*pR->getCompCenterX(pUI) - 50;
-			pR->getCompCenterY(pUI) + 60;*/
 			
 			pManager->AddComponent(pR);
 			

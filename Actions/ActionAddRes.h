@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef ActionAddResistor_H
+#define ActionAddResistor_H
 #include "Action.h"
 #include "..\Components\Resistor.h"
 
@@ -21,4 +21,4 @@ public:
 	virtual void Undo();
 	virtual void Redo();
 };
-
+#endif
