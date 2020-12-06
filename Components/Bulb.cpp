@@ -19,6 +19,10 @@ void Bulb::Operate()
 {
 
 }
+void Bulb::Load(int Value, string Label) {
+	resistance=Value;
+	setlabel(Label);
+}
 ALLCOMPS Bulb::whichComponent() {
 	return BULB;
 }

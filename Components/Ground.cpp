@@ -25,6 +25,9 @@ void Ground::Operate()
 {
 
 }
+void Ground::Load(int Value, string Label) {
+	setlabel(Label);
+}
 ALLCOMPS Ground::whichComponent() {
 	return 	GROUND;
 }

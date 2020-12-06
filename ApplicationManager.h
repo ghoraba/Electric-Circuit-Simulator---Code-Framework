@@ -16,7 +16,9 @@ class ApplicationManager
 
 
 private:
+	GraphicsInfo* G;
 	bool IsSimulation; // true when in simulation mode
+	bool IsSeries;
 	int CompCount;		//Actual number of Components
 	int ConnCount;		//Actual number of Connections
 	int drawningpenwidth;
@@ -59,6 +61,7 @@ public:
 	void CalculateVoltages(double current);
 	void Save(fstream& file, string name);
 	int ApplicationManager::getCompOrder(Component* comp);
+	void Load(fstream& file, string name);	
 	//destructor
 	~ApplicationManager();
 };

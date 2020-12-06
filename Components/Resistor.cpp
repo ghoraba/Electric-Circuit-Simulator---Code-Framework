@@ -25,6 +25,10 @@ void Resistor::Operate()
 {
 
 }
+void Resistor::Load(int Value, string Label) {
+	resistance = Value;
+	setlabel(Label);
+}
 ALLCOMPS Resistor::whichComponent() {
 	return 	RESISTOR;
 }

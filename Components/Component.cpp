@@ -6,6 +6,7 @@ Component::Component(GraphicsInfo *r_GfxInfo)
 	term1_volt = term2_volt = 0;
 	term1_conn_count = term2_conn_count = 0;
 	selected = false;
+	SwitchStatus = CLOSED;
 }
 
 Component::Component()
@@ -14,6 +15,7 @@ Component::Component()
 	term1_volt = term2_volt = 0;
 	term1_conn_count = term2_conn_count = 0;
 	selected = false;
+	SwitchStatus = CLOSED;
 }
 void Component::addTerm1Conn(Connection* c) {
 	term1_conns[term1_conn_count++] = c;
@@ -21,12 +23,18 @@ void Component::addTerm1Conn(Connection* c) {
 void Component::addTerm2Conn(Connection* c) {
 	term2_conns[term2_conn_count++] = c;
 }
-//Connection** Component::getTerm1_conns() {
-//	return term1_conns;
-//}
-//Connection** Component::getTerm2_conns() {
-//	return term2_conns;
-//}
+int Component::getTermcount(TerminalNum Term) {
+	switch (Term) {
+	case TERM1:
+		return term1_conn_count;
+		break;
+	case TERM2:
+		return term2_conn_count;
+		break;
+	default: return 0;
+	}
+}
+
 Connection** Component::getTermConnections(TerminalNum Term) {
 	switch (Term) {
 	case TERM1:

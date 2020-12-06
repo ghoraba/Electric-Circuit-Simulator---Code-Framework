@@ -6,5 +6,6 @@ public:
 	Bulb(GraphicsInfo* r_GfxInfo);
 	virtual void Draw(UI*);	//Draws the Bulb
 	virtual void Operate();
+	virtual void Load(int Value, string);
 	virtual ALLCOMPS Bulb::whichComponent();
 };

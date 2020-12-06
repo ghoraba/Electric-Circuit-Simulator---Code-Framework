@@ -12,6 +12,7 @@
 #include"Actions/ActionEdit.h"
 #include"Actions/ExitAction.h"
 #include"Actions/ActionSave.h"
+#include"Actions/ActionLoad.h"
 #include"Actions/ActionAddLabel.h"
 
 #include <iostream>
@@ -229,15 +230,16 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case SAVE:
 		pAct = new ActionSave(this);
 		break;
+	case LOAD:
+		pAct = new ActionLoad(this);
+		break;
 	case DEL:
 		pAct = new ActionDelete(this);
 		break;
-	/*case SELECT:
-		pAct=*/
-		// TODO: Add remaining actions
-		/*case ADD_BULB:
-			pAct = new ActionAddRes(this);
-			break;*/
+	/*case SIM_MODE:
+		pAct = new Action(this);
+		break;*/
+	
 
 	case EXIT:
 		///TODO: create ExitAction here
@@ -454,6 +456,56 @@ int ApplicationManager::getCompOrder(Component* comp) {
 		if (comp == CompList[i])
 			return i;
 	}
+}
+void ApplicationManager::Load(fstream& file, string name)
+{
+	G = new GraphicsInfo(2);
+	
+	file.open(name, ios::in);
+	if (!file.fail())
+	{
+		string CompName;
+		string Label;
+		int graphicInfoX, graphicInfoY, num;
+		int ID;
+		int Value;
+		file >> num;
+		while (file >> CompName)
+		{
+			
+		
+			
+				
+				file >> ID;
+				file >> Label;
+				file >> Value;
+				file >> graphicInfoX;
+				file >> graphicInfoY;
+				if (CompName == "RES")
+				{
+					//CompCount++;
+					G = new GraphicsInfo(2);
+
+					G->PointsList[0].x = graphicInfoX;
+					G->PointsList[0].y = graphicInfoY;
+					G->PointsList[1].x = graphicInfoX + pUI->getCompWidth();;
+					G->PointsList[1].y = graphicInfoY + pUI->getCompHeight();
+
+					Resistor* comp = new Resistor(G);
+					comp->Load(Value, Label);
+					//CompList[ID-1] = comp;
+					AddComponent(comp);
+					
+
+				}
+			
+
+		}
+	}
+	else
+		pUI->PrintMsg("File open failure! ");
+
+	file.close();
 }
 
 ////////////////////////////////////////////////////////////////////

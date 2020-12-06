@@ -25,6 +25,10 @@ void Fuze::Operate()
 {
 
 }
+void Fuze::Load(int Value, string Label) {
+	MaxFuzeCurrent = Value;
+	setlabel(Label);
+}
 ALLCOMPS Fuze::whichComponent() {
 	return 	FUZE;
 }

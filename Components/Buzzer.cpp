@@ -20,6 +20,10 @@ void Buzzer::Operate()
 {
 
 }
+void Buzzer::Load(int Value, string Label) {
+	resistance = Value;
+	setlabel(Label);
+}
 ALLCOMPS Buzzer::whichComponent() {
 	return BUZZER;
 }

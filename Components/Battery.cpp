@@ -26,6 +26,10 @@ void Battery::Operate()
 {
 
 }
+void Battery::Load(int Value, string Label) {
+	setSourceVoltage(Value);
+	setlabel(Label);
+}
 ALLCOMPS Battery::whichComponent() {
 	return 	BATTERY;
 }

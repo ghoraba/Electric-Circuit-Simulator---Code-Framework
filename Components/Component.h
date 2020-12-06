@@ -47,7 +47,7 @@ public:
 	int getMaxFuze() {
 		return MaxFuzeCurrent;
 	}
-	// getTermcount(TerminalNum Term);
+	int getTermcount(TerminalNum Term);
 	Connection** getTermConnections(TerminalNum Term);
 	string getLabel();
 	GraphicsInfo* getGraphics();
@@ -68,7 +68,7 @@ public:
 	virtual void Operate() = 0; // activates components such as bulb and buzzer
 	virtual ALLCOMPS whichComponent() = 0;
 	virtual void Draw(UI*) = 0;	//for each component to Draw itself
-
+	virtual void Load(int Value, string )=0;
 	int getCompCenterX(UI*); // get horizontal/vertical centers of the component
 	int getCompCenterY(UI*);
 	int getGraphicsInfoY();

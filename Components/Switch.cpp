@@ -28,6 +28,10 @@ void Switch::Operate()
 {
 
 }
+void Switch::Load(int Value, string Label) {
+	SwitchStatus = Status(Value);
+	setlabel(Label);
+}
 ALLCOMPS Switch::whichComponent() {
 	return 	SWITCH;
 }

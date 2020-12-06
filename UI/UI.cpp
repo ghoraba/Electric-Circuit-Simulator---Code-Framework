@@ -125,7 +125,8 @@ ActionType UI::GetUserAction()
 			case ITM_EDIT:return EDIT;
 			case ITM_DELETE:return DEL;
 			case ITM_SAVE: return SAVE;
-			
+			case ITM_LOAD: return LOAD;
+			case ITM_SIMU: return SIM_MODE;
 			case ITM_EXIT:	return EXIT;	
 			
 			default: return DSN_TOOL;	//A click on empty place in desgin toolbar
@@ -242,6 +243,8 @@ void UI::CreateDesignToolBar()
 	MenuItemImages[ITM_LABEL] = "images\\Menu\\Menu_Label.jpg";
 	MenuItemImages[ITM_EDIT] = "images\\Menu\\Menu_Edit.jpg";
 	MenuItemImages[ITM_SAVE] = "images\\Menu\\Menu_Save.jpg";
+	MenuItemImages[ITM_SIMU] = "images\\Menu\\Menu_Play.jpg";
+	MenuItemImages[ITM_LOAD] = "images\\Menu\\Menu_Load.jpg";
 	MenuItemImages[ITM_DELETE] = "images\\Menu\\Menu_Delete.jpg";
 	
 

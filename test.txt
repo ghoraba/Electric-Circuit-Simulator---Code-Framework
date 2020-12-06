@@ -1,0 +1,3 @@
+2
+RES 1 res1 1 500 200
+RES 2 resistor2 2 150 190
