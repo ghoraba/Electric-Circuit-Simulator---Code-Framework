@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BATTERY_H
+#define BATTERY_H
 #include "Component.h"
 
 class Battery :public Component
@@ -10,3 +11,4 @@ public:
 	virtual void Load(int Value,string Label);
 	virtual ALLCOMPS whichComponent();
 };
+#endif

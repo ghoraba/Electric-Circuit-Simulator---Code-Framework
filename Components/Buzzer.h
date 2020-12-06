@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BUZZER_H
+#define BUZZER_H
+
 #include "Component.h"
 
 class Buzzer:public Component
@@ -11,3 +13,4 @@ public:
 	virtual ALLCOMPS whichComponent();
 
 };
+#endif

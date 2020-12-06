@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BULB_H
+#define BULB_H
+
 #include "Component.h"
 
 class Bulb :public Component {
@@ -8,4 +10,6 @@ public:
 	virtual void Operate();
 	virtual void Load(int Value, string);
 	virtual ALLCOMPS Bulb::whichComponent();
+
 };
+#endif

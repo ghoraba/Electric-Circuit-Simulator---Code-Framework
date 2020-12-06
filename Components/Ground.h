@@ -1,4 +1,5 @@
-#pragma once
+#ifndef GROUND_H
+#define GROUND_H
 #include "Component.h"
 
 class Ground :public Component
@@ -10,4 +11,5 @@ public:
 	virtual void Load(int Value, string);
 	virtual ALLCOMPS whichComponent();
 };
-#pragma once
+
+#endif

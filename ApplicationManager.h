@@ -1,6 +1,7 @@
 #ifndef APPLICATION_MANAGER_H
 #define APPLICATION_MANAGER_H
 #include<fstream>
+#include<iosfwd >
 #include "Defs.h"
 #include "UI\UI.h"
 #include "Actions\Action.h"
@@ -61,7 +62,7 @@ public:
 	void CalculateVoltages(double current);
 	void Save(fstream& file, string name);
 	int ApplicationManager::getCompOrder(Component* comp);
-	void Load(fstream& file, string name);	
+	void Load(ifstream& file, string name);	
 	//destructor
 	~ApplicationManager();
 };

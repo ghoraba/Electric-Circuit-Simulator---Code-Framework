@@ -1,8 +1,6 @@
 #include "Switch.h"
 #include "..\Actions\Action.h"
 #include <stdlib.h>
-#include "..\ApplicationManager.h"
-#include "..\UI\UI.h"
 Switch::Switch(GraphicsInfo* r_GfxInfo) :Component(r_GfxInfo)
 {
 	resistance = 2;

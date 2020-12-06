@@ -1,5 +1,5 @@
 #include "Connection.h"
-
+#include"..\Components\Component.h"
 Connection::Connection(GraphicsInfo* r_GfxInfo, Component* cmp1, Component* cmp2)
 {
 	pGfxInfo = r_GfxInfo;
@@ -7,6 +7,23 @@ Connection::Connection(GraphicsInfo* r_GfxInfo, Component* cmp1, Component* cmp2
 	Comp2 = cmp2;
 	selected = false;
 }
+void Connection::Load(Component* cmp1, Component* cmp2) {
+	
+	Comp1 = cmp1;
+	Comp2 = cmp2;
+	GraphicsInfo *G1, *G2;
+	G1 = Comp1->getGraphics();
+	G2 = Comp2->getGraphics();
+	if (pGfxInfo->PointsList[0].x < G1->PointsList[0].x)
+		Comp1->addTerm1Conn(this);
+	else
+		Comp1->addTerm2Conn(this);
+	if (pGfxInfo->PointsList[1].x < G1->PointsList[1].x)
+		Comp2->addTerm1Conn(this);
+	else
+		Comp1->addTerm2Conn(this);
+}
+
 void Connection::Draw(UI* pUI)
 {
 	int xlabel = (pGfxInfo->PointsList[0].x + pGfxInfo->PointsList[1].x) / 2;

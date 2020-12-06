@@ -5,7 +5,7 @@
 class ActionLoad : public Action
 {
 private:
-	fstream file;
+	ifstream file;
 public:
 	ActionLoad(ApplicationManager* pApp);
 	virtual ~ActionLoad(void);

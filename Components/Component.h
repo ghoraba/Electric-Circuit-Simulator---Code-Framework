@@ -1,5 +1,5 @@
-#ifndef _COMPONENT_H
-#define _COMPONENT_H
+#ifndef COMPONENT_H
+#define COMPONENT_H
 
 #include "..\Defs.h"
 #include "..\UI\UI.h"

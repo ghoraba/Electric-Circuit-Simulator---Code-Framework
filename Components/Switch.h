@@ -1,4 +1,6 @@
-#pragma once
+#ifndef SWITCH_H
+#define SWITCH_H
+
 #include "Component.h"
 
 class Switch :public Component
@@ -10,3 +12,4 @@ public:
 	virtual void Load(int Value, string);
 	virtual ALLCOMPS whichComponent();
 };
+#endif

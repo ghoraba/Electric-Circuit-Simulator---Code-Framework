@@ -1,6 +1,6 @@
-#pragma once
+#ifndef CONNECTION_H
+#define CONNECTION_H
 #include "..\UI\UI.h"
-
 class Component;	//forward class declaration
 
 class Connection
@@ -11,11 +11,13 @@ class Connection
 	string c_label;
 	bool selected;
 public:
+	
+	Connection(GraphicsInfo* r_GfxInfo, Component* cmp1 = nullptr, Component* cmp2 = nullptr);
+	void Load(Component* cmp1, Component* cmp2);
 	void setLabel(string s);
 	string getLabel();
 	double lineslope();
 	GraphicsInfo* getgraphics() const;
-	Connection(GraphicsInfo* r_GfxInfo, Component* cmp1 = nullptr, Component* cmp2 = nullptr);
 	virtual void Draw(UI*);	//for connection to Draw itself
 	Component* getComp(int n);
 	bool isSelected();
@@ -24,3 +26,4 @@ public:
 	//Component* getOtherComponent(Component* Cmpnt); // Get component connected to the other end of the connection
 
 };
+#endif

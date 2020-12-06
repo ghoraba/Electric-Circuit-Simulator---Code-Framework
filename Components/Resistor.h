@@ -1,4 +1,6 @@
-#pragma once
+#ifndef RESISTOR_H
+#define RESISTOR_H
+
 #include "Component.h"
 
 class Resistor:public Component
@@ -10,3 +12,4 @@ public:
 	virtual void Load(int Value, string);
 	virtual ALLCOMPS whichComponent();
 };
+#endif

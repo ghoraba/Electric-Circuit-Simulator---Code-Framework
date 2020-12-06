@@ -425,16 +425,16 @@ void ApplicationManager::Save(fstream& file, string name)
 			file << "BAT" << "\t" << i + 1 << "\t" << CompList[i]->getLabel() << "\t" << CompList[i]->getBatteryVoltage() << "\t" << CompList[i]->getGraphicsInfoX() << "\t" << CompList[i]->getGraphicsInfoY()
 			<< endl;
 		if (CompList[i]->whichComponent() == FUZE)
-			file << "BAT" << "\t" << i + 1 << "\t" << CompList[i]->getLabel() << "\t" << CompList[i]->getMaxFuze() << "\t" << CompList[i]->getGraphicsInfoX() << "\t" << CompList[i]->getGraphicsInfoY()
+			file << "FUZ" << "\t" << i + 1 << "\t" << CompList[i]->getLabel() << "\t" << CompList[i]->getMaxFuze() << "\t" << CompList[i]->getGraphicsInfoX() << "\t" << CompList[i]->getGraphicsInfoY()
 			<< endl;
 		if (CompList[i]->whichComponent() == SWITCH)
-			file << "BAT" << "\t" << i + 1 << "\t" << CompList[i]->getLabel() << "\t" << CompList[i]->getSwitchState() << "\t" << CompList[i]->getGraphicsInfoX() << "\t" << CompList[i]->getGraphicsInfoY()
+			file << "SWT" << "\t" << i + 1 << "\t" << CompList[i]->getLabel() << "\t" << CompList[i]->getSwitchState() << "\t" << CompList[i]->getGraphicsInfoX() << "\t" << CompList[i]->getGraphicsInfoY()
 			<< endl;
 		if (CompList[i]->whichComponent() == BUZZER)
-			file << "BAT" << "\t" << i + 1 << "\t" << CompList[i]->getLabel() << "\t" << CompList[i]->getResistance() << "\t" << CompList[i]->getGraphicsInfoX() << "\t" << CompList[i]->getGraphicsInfoY()
+			file << "BZR" << "\t" << i + 1 << "\t" << CompList[i]->getLabel() << "\t" << CompList[i]->getResistance() << "\t" << CompList[i]->getGraphicsInfoX() << "\t" << CompList[i]->getGraphicsInfoY()
 			<< endl;
 		if (CompList[i]->whichComponent() == BULB)
-			file << "BAT" << "\t" << i + 1 << "\t" << CompList[i]->getLabel() << "\t" << CompList[i]->getResistance() << "\t" << CompList[i]->getGraphicsInfoX() << "\t" << CompList[i]->getGraphicsInfoY()
+			file << "BLB" << "\t" << i + 1 << "\t" << CompList[i]->getLabel() << "\t" << CompList[i]->getResistance() << "\t" << CompList[i]->getGraphicsInfoX() << "\t" << CompList[i]->getGraphicsInfoY()
 			<< endl;	
 	}
 	file << "Connection \n" << CompCount << endl;;
@@ -457,11 +457,11 @@ int ApplicationManager::getCompOrder(Component* comp) {
 			return i;
 	}
 }
-void ApplicationManager::Load(fstream& file, string name)
+void ApplicationManager::Load(ifstream& file, string name)
 {
 	G = new GraphicsInfo(2);
 	
-	file.open(name, ios::in);
+	file.open(name);
 	if (!file.fail())
 	{
 		string CompName;
@@ -472,35 +472,96 @@ void ApplicationManager::Load(fstream& file, string name)
 		file >> num;
 		while (file >> CompName)
 		{
-			
-		
-			
-				
+			if (CompName != "Connections")
+			{
+
+
+
 				file >> ID;
 				file >> Label;
 				file >> Value;
 				file >> graphicInfoX;
 				file >> graphicInfoY;
+				G = new GraphicsInfo(2);
+
+				G->PointsList[0].x = graphicInfoX;
+				G->PointsList[0].y = graphicInfoY;
+				G->PointsList[1].x = graphicInfoX + pUI->getCompWidth();;
+				G->PointsList[1].y = graphicInfoY + pUI->getCompHeight();
 				if (CompName == "RES")
 				{
-					//CompCount++;
-					G = new GraphicsInfo(2);
-
-					G->PointsList[0].x = graphicInfoX;
-					G->PointsList[0].y = graphicInfoY;
-					G->PointsList[1].x = graphicInfoX + pUI->getCompWidth();;
-					G->PointsList[1].y = graphicInfoY + pUI->getCompHeight();
-
 					Resistor* comp = new Resistor(G);
 					comp->Load(Value, Label);
-					//CompList[ID-1] = comp;
 					AddComponent(comp);
-					
-
 				}
-			
+				if (CompName == "SWT")
+				{
+					Switch* comp = new Switch(G);
+					comp->Load(Value, Label);
+					AddComponent(comp);
+				}
+				if (CompName == "BAT")
+				{
+					Battery* comp = new Battery(G);
+					comp->Load(Value, Label);
+					AddComponent(comp);
+				}
+				if (CompName == "BLB")
+				{
+					Bulb* comp = new Bulb(G);
+					comp->Load(Value, Label);
+					AddComponent(comp);
+				}
+				if (CompName == "GND")
+				{
+					Ground* comp = new Ground(G);
+					comp->Load(Value, Label);
+					AddComponent(comp);
+				}
+				if (CompName == "FUS")
+				{
+					Fuze* comp = new Fuze(G);
+					comp->Load(Value, Label);
+					AddComponent(comp);
+				}
+				if (CompName == "BZR")
+				{
+					Buzzer* comp = new Buzzer(G);
+					comp->Load(Value, Label);
+					AddComponent(comp);
+				}
+			}
+			else {
+				int comp1;
+				int comp2;
+				int graphicspoint;
+				file >> num;
+				while (file >> comp1) {
+
+					file >> comp2;
+
+					file >> graphicspoint;
+					G = new GraphicsInfo(2);
+					G->PointsList[0].x = graphicspoint;
+					file >> graphicspoint;
+					G->PointsList[0].y = graphicspoint;
+					file >> graphicspoint;
+					G->PointsList[1].x = graphicspoint;
+					file >> graphicspoint;
+					G->PointsList[1].y = graphicspoint;
+					Connection* C = new Connection(G);
+					C->Load(CompList[comp1-1], CompList[comp2-1]);
+					AddConnection(C);
+				}
+				
+
+
+			}
 
 		}
+	
+
+	
 	}
 	else
 		pUI->PrintMsg("File open failure! ");

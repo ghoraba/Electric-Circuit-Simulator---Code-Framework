@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef FUZE_H
+#define FUZE_H
 #include "Component.h"
 
 class Fuze :public Component
@@ -12,3 +12,4 @@ public:
 	virtual void Load(int Value, string);
 	virtual ALLCOMPS whichComponent();
 };
+#endif
